@@ -1,0 +1,18 @@
+version: '3'
+services:
+
+  db:
+    image: postgres:11
+    environment:      
+      POSTGRES_DB: Conagua
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5431:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data      
+      - ./schema-sql/conagua.sql:/docker-entrypoint-initdb.d/1-Conagua.sql
+
+volumes:
+  pgdata:
+    driver: local
